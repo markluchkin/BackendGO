@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package LinkedList
 
 type Node struct {
 	Val  int
@@ -104,18 +102,4 @@ func (l *linkedList) UpdateAt(pos, val int) {
 	}
 
 	curr.Val = val
-}
-
-//NewFromSlice *
-
-func main() {
-	list := New(10)
-	list.Add(5)         // 11 эл
-	list.Add(131231231) // 12 эл
-	fmt.Println(list.Size())
-	fmt.Println(list.At(12))
-	fmt.Println(list.At(0))
-	list.DeleteFrom(11)
-	fmt.Println(list.At(11))
-
 }
