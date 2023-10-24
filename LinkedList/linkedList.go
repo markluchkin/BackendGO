@@ -39,7 +39,7 @@ func (l *linkedList) Add(val int) {
 func (l *linkedList) Pop() {
 	// Удалить элемент из конца.
 	curr := l.Head
-	for i := 0; i < l.Size()-2; i++ {
+	for i := 0; i < l.Size()-1; i++ {
 		curr = curr.Next
 	}
 	curr.Next = nil
