@@ -81,13 +81,11 @@ func (l *linkedList) DeleteFrom(pos int) {
 	}
 
 	curr := l.Head
-	prev := curr
 	for i := 0; i < pos; i++ {
-		prev = curr
 		curr = curr.Next
 	}
 
-	prev.Next = curr.Next
+	curr.Next = curr.Next.Next
 }
 
 func (l *linkedList) UpdateAt(pos, val int) {
