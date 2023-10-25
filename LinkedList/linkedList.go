@@ -14,34 +14,37 @@ func New(q int) *linkedList {
 	head := Node{}
 	currNode := &head
 	lst := linkedList{Head: &head}
-	for i := 0; i < q; i++ {
+	for i := 0; i < q-1; i++ {
 		currNode.Next = &Node{}
 		currNode = currNode.Next
 	}
 	return &lst
 }
 
-func (l *linkedList) Add(val int) {
-	// Добавить элемент в конец списка.
-	newNode := &Node{Val: val, Next: nil}
-
+func (l *linkedList) Add(value int) {
+	newNode := &Node{Val: value, Next: nil}
 	if l.Head == nil {
 		l.Head = newNode
 	} else {
-		currNode := l.Head
-		for currNode.Next != nil {
-			currNode = currNode.Next
+		curr := l.Head
+		for curr.Next != nil {
+			curr = curr.Next
 		}
-		currNode.Next = newNode
+		curr.Next = newNode
 	}
 }
 
 func (l *linkedList) Pop() {
 	// Удалить элемент из конца.
 	curr := l.Head
-	for i := 0; i < l.Size()-1; i++ {
+	if curr.Next == nil {
+		return
+	}
+
+	for curr.Next.Next != nil {
 		curr = curr.Next
 	}
+
 	curr.Next = nil
 }
 
@@ -49,7 +52,7 @@ func (l *linkedList) At(pos int) int {
 	// Получение элемента из позиции pos.
 	curr := l.Head
 	i := 0
-	for i != pos {
+	for i != pos && curr.Next != nil {
 		curr = curr.Next
 		i++
 	}
@@ -65,23 +68,22 @@ func (l *linkedList) Size() int {
 		size++
 		curr = curr.Next
 	}
-
+	size++
 	return size
 }
 
 func (l *linkedList) DeleteFrom(pos int) {
 	// Удалить элемент из позиции pos.
-	if pos < 0 || pos >= l.Size() { // недопустимая позиция
-		return
-	}
-
-	if pos == 0 { // то удаляем 1 элемент списка
-		l.Head = l.Head.Next
-		return
-	}
-
 	curr := l.Head
-	for i := 0; i < pos; i++ {
+	if curr.Next == nil {
+		return
+	}
+	if pos == 0 {
+		curr = curr.Next
+		return
+	}
+
+	for i := 0; i != pos-1 && curr.Next != nil; i++ {
 		curr = curr.Next
 	}
 
