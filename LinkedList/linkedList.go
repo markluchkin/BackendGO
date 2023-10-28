@@ -7,7 +7,7 @@ type node struct {
 	next *node
 }
 
-type linkedList struct {
+type LinkedList struct {
 	head *node
 }
 
@@ -16,7 +16,7 @@ func New(q int) *linkedList {
 
 	if q <= 0 {
 		fmt.Println("ERROR: list size is incorrect.")
-		return &linkedList{head: &node{}}
+		return nil
 	}
 
 	head := node{}
@@ -64,6 +64,7 @@ func (l *linkedList) At(pos int) int {
 	// Получение элемента из позиции pos.
 	if pos < 0 {
 		fmt.Println("ERORR: inputted position doesn't exist.")
+		return 0
 	}
 	curr := l.head
 	i := 0
